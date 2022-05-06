@@ -282,15 +282,15 @@ void Lista::adaugare(int poz, int val) {
     n++;
 }
 
-class Dequeue {
+class Deque {
     Lista d;
 public:
-    Dequeue(int val = 0) : d(val) {}
+    Deque(int val = 0) : d(val) {}
 
-    Dequeue(const Dequeue &a) : d(a.d) {}
+    Deque(const Deque &a) : d(a.d) {}
 
 
-    ~Dequeue() {
+    ~Deque() {
         d.~Lista();
     }
 
@@ -318,17 +318,17 @@ public:
         return d.interogarePoz(d.getNr() - 1);
     }
 
-    friend ostream &operator<<(ostream &, Dequeue);
+    friend ostream &operator<<(ostream &, Deque);
 
-    Dequeue operator=(Dequeue);
+    Deque operator=(Deque);
 
-    Dequeue operator+(int);
+    Deque operator+(int);
 
     void operator+=(int val) {
         d = d + val;
     }
 
-    friend Dequeue operator+(int, Dequeue);
+    friend Deque operator+(int, Deque);
 
     operator int() {
         return this->front();
@@ -338,29 +338,29 @@ public:
 
 };
 
-Nod *Dequeue::operator[](int poz) {
+Nod *Deque::operator[](int poz) {
     return d[poz];
 
 }
 
-ostream &operator<<(ostream &out, Dequeue a) {
+ostream &operator<<(ostream &out, Deque a) {
     cout << a.d;
     return out;
 }
 
-Dequeue operator+(int val, Dequeue a) {
+Deque operator+(int val, Deque a) {
     a.push_front(val);
     return a;
 }
 
-Dequeue Dequeue::operator=(Dequeue a) {
-    this->~Dequeue();
+Deque Deque::operator=(Deque a) {
+    this->~Deque();
     this->d = a.d;
     return *this;
 }
 
-Dequeue Dequeue::operator+(int val) {
-    Dequeue sum = *this;
+Deque Deque::operator+(int val) {
+    Deque sum = *this;
     sum.push_back(val);
     return sum;
 }
@@ -389,7 +389,7 @@ int isnum(string a)
 int main() {
     string ans;
     trim(ans);
-    cout << "Do you want to create a new dequeue?(y/n)\n";
+    cout << "Do you want to create a new Deque?(y/n)\n";
     while (1) {
         getline(cin, ans);
         trim(ans);
@@ -402,7 +402,7 @@ int main() {
         }
     }
     cout << "#########################################\n\n";
-    cout << "Insert the first number into the dequeue:\n";
+    cout << "Insert the first number into the Deque:\n";
     int nr;
     while (1) {
         string number;
@@ -420,10 +420,10 @@ int main() {
 
         break;
     }
-    Dequeue d(nr);
+    Deque d(nr);
     while (1) {
         cout << "\n#########################################\n\n";
-        cout << "Your dequeue:\n" << d << "\n\n";
+        cout << "Your Deque:\n" << d << "\n\n";
         cout << "Pick an option:\n";
         cout << "0. Exit\n";
         cout << "1. Push back a number\n";
@@ -500,7 +500,7 @@ int main() {
                     throw 1;
             }
             catch (int x) {
-                cout << "\nDequeue is empty\n";
+                cout << "\nDeque is empty\n";
             }
         } else if (option == 4) {
             try {
@@ -508,7 +508,7 @@ int main() {
                     throw 1;
             }
             catch (int x) {
-                cout << "\nDequeue is empty\n";
+                cout << "\nDeque is empty\n";
             }
         } else if (option == 5) {
             cout << (int) d << '\n';
